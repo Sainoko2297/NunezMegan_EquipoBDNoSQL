@@ -5,9 +5,48 @@
         "anio": 1995,
         "precision": "anio",
         "fecha": null
+      },
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2008
+        }
       }
     },
-    "motivo": "MySQL AB se fundó en 1995, año de la primera versión de MySQL; DBpedia coincide"
+    "motivo": "MySQL AB se fundó en 1995, año de la primera versión de MySQL; DBpedia coincide. Sun Microsystems la compró en 2008"
+  },
+  "Q1029222": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "Pertec Computer Corporation",
+          "anio": 1977
+        }
+      }
+    },
+    "motivo": "Pertec la compró en 1977; 1980 es el cierre posterior"
+  },
+  "Q1096013": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "ON Semiconductor",
+          "anio": 2016
+        }
+      }
+    },
+    "motivo": "ON Semiconductor la compró en 2016; no está en el catálogo"
+  },
+  "Q1122329": {
+    "campos": {
+      "estado": "fusionada",
+      "relaciones": {
+        "sucesor": {
+          "nombre": "DXC Technology",
+          "anio": 2017
+        }
+      }
+    },
+    "motivo": "Se fusionó en 2017 con los servicios empresariales de HPE para formar DXC Technology"
   },
   "Q1129996": {
     "campos": {
@@ -27,13 +66,94 @@
     },
     "motivo": "2003 correcto; 2002 es el anuncio de la alianza Hitachi-Mitsubishi y 2010 la fusión con NEC Electronics"
   },
+  "Q1359568": {
+    "campos": {
+      "estado": "activa",
+      "relaciones": {
+        "adquirida_por": null
+      },
+      "nombre": "Alibaba Group"
+    },
+    "motivo": "SoftBank es accionista minoritario, no dueño; la empresa sigue independiente. El QID corresponde al grupo, no al sitio alibaba.com"
+  },
   "Q1390577": {
     "campos": {
       "fundacion": {
         "anio": 2007
+      },
+      "estado": "fusionada",
+      "relaciones": {
+        "sucesor": {
+          "nombre": "X Corp.",
+          "anio": 2023
+        }
       }
     },
-    "motivo": "Twitter, Inc. se constituyó en 2007; el servicio se lanzó en 2006 dentro de Obvious Corp"
+    "motivo": "Twitter, Inc. se constituyó en 2007; el servicio se lanzó en 2006 dentro de Obvious Corp. Se fusionó en 2023 con X Corp."
+  },
+  "Q1420164": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2012
+        }
+      }
+    },
+    "motivo": "América Móvil tomó el control en 2012"
+  },
+  "Q144060": {
+    "campos": {
+      "fundacion": {
+        "anio": 1987,
+        "precision": "anio",
+        "fecha": null,
+        "lugar": null
+      },
+      "fundadores": [
+        {
+          "nombre": "Burton Smith"
+        },
+        {
+          "nombre": "James Rottsolk"
+        }
+      ],
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2019
+        }
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Tera Computer Company",
+          "desde": 1987,
+          "hasta": 2000
+        }
+      ],
+      "atributos": {
+        "antecesores": [
+          "Cray Research"
+        ]
+      }
+    },
+    "motivo": "La entidad es Tera Computer (1987), que compró Cray Research a SGI en 2000 y adoptó el nombre Cray Inc.; Cray Research (1972) es antecesora. HPE la compró en 2019"
+  },
+  "Q160229": {
+    "campos": {
+      "estado": "activa",
+      "disolucion": null
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Compañía Telefónica Nacional de España",
+          "desde": 1924,
+          "hasta": 1988
+        }
+      ]
+    },
+    "motivo": "Sigue activa; 1988 es el cambio de nombre de CTNE, no una disolución"
   },
   "Q173395": {
     "campos": {
@@ -43,6 +163,40 @@
     },
     "motivo": "1984 correcto; 2021 no corresponde a una fundación"
   },
+  "Q1756771": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "Motorola Solutions",
+          "anio": 2012
+        }
+      }
+    },
+    "motivo": "Motorola Solutions la compró en 2012; no está en el catálogo"
+  },
+  "Q185608": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "empresa_id": "Q223407",
+          "anio": 1991
+        }
+      }
+    },
+    "motivo": "Novell la compró en 1991; Wikidata no registra al dueño"
+  },
+  "Q1873176": {
+    "campos": {
+      "estado": "fusionada",
+      "relaciones": {
+        "sucesor": {
+          "nombre": "Alcatel-Lucent",
+          "anio": 2006
+        }
+      }
+    },
+    "motivo": "Se fusionó con Alcatel en 2006 para formar Alcatel-Lucent"
+  },
   "Q208305": {
     "campos": {
       "relaciones": {
@@ -50,6 +204,17 @@
       }
     },
     "motivo": "Wikidata registra a Gateway como sucesora; solo compró propiedad intelectual en 1997"
+  },
+  "Q223407": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "Attachmate",
+          "anio": 2011
+        }
+      }
+    },
+    "motivo": "Attachmate la compró en 2011; 2014 es la disolución legal posterior"
   },
   "Q229329": {
     "campos": {
@@ -61,6 +226,56 @@
       }
     },
     "motivo": "La compró Hewlett-Packard en 2010; Wikidata registra a HPE, su dueña actual tras la escisión de 2015"
+  },
+  "Q234946": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "empresa_id": "Q11463",
+          "anio": 2005
+        }
+      }
+    },
+    "motivo": "Adobe la compró en 2005; Wikidata no registra al dueño"
+  },
+  "Q259011": {
+    "campos": {
+      "nombre": "Motorola Solutions",
+      "estado": "activa",
+      "disolucion": null,
+      "relaciones": {
+        "sucesor": null
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Galvin Manufacturing Corporation",
+          "desde": 1928,
+          "hasta": 1947
+        },
+        {
+          "nombre": "Motorola Inc.",
+          "desde": 1947,
+          "hasta": 2011
+        }
+      ]
+    },
+    "motivo": "La misma entidad siguió como Motorola Solutions tras separar Motorola Mobility en 2011; Motorola Mobility es escisión, no sucesora"
+  },
+  "Q267313": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2011
+        },
+        "escindida_de": {
+          "empresa_id": "Q248",
+          "anio": 2017
+        }
+      }
+    },
+    "motivo": "Intel la compró en 2011 y la separó en 2017 como empresa independiente con TPG"
   },
   "Q28840043": {
     "campos": {
@@ -98,12 +313,28 @@
     },
     "motivo": "Fundada en 1984 como PC's Limited; 2016 es la creación de Dell Technologies"
   },
+  "Q308993": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "empresa_id": "Q312",
+          "anio": 1997
+        }
+      }
+    },
+    "motivo": "Apple la compró en 1997; Wikidata no registra al dueño"
+  },
   "Q3511885": {
     "campos": {
       "fundacion": {
         "anio": 1994,
         "precision": "anio",
         "fecha": null
+      },
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2001
+        }
       }
     },
     "agregar": {
@@ -115,7 +346,7 @@
         }
       ]
     },
-    "motivo": "Nació como VoiceStream Wireless (1994); 2001 es la compra por Deutsche Telekom"
+    "motivo": "Nació como VoiceStream Wireless (1994); Deutsche Telekom la compró en 2001"
   },
   "Q35476": {
     "campos": {
@@ -163,6 +394,17 @@
     },
     "motivo": "1983 correcto (Bell Atlantic); 2000 es la fusión con GTE que creó Verizon"
   },
+  "Q478354": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "empresa_id": "Q311394",
+          "anio": 2020
+        }
+      }
+    },
+    "motivo": "Infineon la compró en 2020; la disolución de Wikidata es la compra"
+  },
   "Q524989": {
     "campos": {
       "fundacion": {
@@ -207,10 +449,81 @@
     },
     "motivo": "Fundada en 2012 por Zhang Yiming; DBpedia coincide"
   },
+  "Q623459": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "Rackable Systems",
+          "anio": 2009
+        }
+      }
+    },
+    "motivo": "Rackable Systems compró sus activos en 2009 y adoptó el nombre SGI. Hitos de Cray Research, que no tiene documento propio",
+    "agregar": {
+      "hitos": [
+        {
+          "anio": 1996,
+          "tipo": "adquisicion",
+          "descripcion": "Adquiere Cray Research"
+        },
+        {
+          "anio": 2000,
+          "tipo": "venta_division",
+          "contraparte_id": "Q144060",
+          "descripcion": "Vende Cray Research a Tera Computer, hoy Cray Inc."
+        }
+      ]
+    }
+  },
+  "Q757489": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "Microchip Technology",
+          "anio": 2016
+        }
+      }
+    },
+    "motivo": "Microchip Technology la compró en 2016; no está en el catálogo"
+  },
+  "Q864923": {
+    "campos": {
+      "fundacion": {
+        "anio": 1992,
+        "precision": "anio",
+        "fecha": null
+      },
+      "sede": {
+        "ciudad": "Singapur",
+        "ubicacion": {
+          "type": "Point",
+          "coordinates": [
+            103.833333,
+            1.283333
+          ]
+        }
+      }
+    },
+    "agregar": {
+      "atributos": {
+        "antecesores": [
+          "Telecommunication Authority of Singapore"
+        ]
+      }
+    },
+    "motivo": "Se constituyó como empresa en 1992 al separarse de la autoridad estatal de telecomunicaciones; 1879 es el inicio del servicio telefónico. Ciudad-estado: sede en Singapur"
+  },
   "Q885235": {
     "campos": {
       "fundacion": {
         "anio": 1898
+      },
+      "estado": "fusionada",
+      "relaciones": {
+        "sucesor": {
+          "nombre": "Alcatel-Lucent",
+          "anio": 2006
+        }
       }
     },
     "agregar": {
@@ -222,7 +535,26 @@
         }
       ]
     },
-    "motivo": "1898 es la fundación de CGE, renombrada Alcatel en 1991; 1968 es la filial que originó el nombre"
+    "motivo": "1898 es la fundación de CGE, renombrada Alcatel en 1991; 1968 es la filial que originó el nombre. Se fusionó con Lucent en 2006 para formar Alcatel-Lucent"
+  },
+  "Q909169": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 1995
+        }
+      }
+    },
+    "motivo": "IBM la compró en 1995; Wikidata no registra el año"
+  },
+  "Q9396": {
+    "campos": {
+      "estado": "activa",
+      "relaciones": {
+        "adquirida_por": null
+      }
+    },
+    "motivo": "SoftBank es accionista minoritario, no dueño; la empresa sigue independiente"
   },
   "Q950419": {
     "campos": {
@@ -233,6 +565,17 @@
       }
     },
     "motivo": "Fundada en 1999 por Marcos Galperin; DBpedia coincide"
+  },
+  "Q960876": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "nombre": "Seagate Technology",
+          "anio": 2006
+        }
+      }
+    },
+    "motivo": "Seagate la compró en 2006; no está en el catálogo"
   },
   "Q973054": {
     "campos": {

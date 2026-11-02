@@ -29,7 +29,7 @@ from pymongo import MongoClient
 from pymongo.errors import WriteError
 
 LISTA = Path(__file__).parent / "datos" / "lista_semilla.csv"
-VERSION_ESQUEMA = 1
+VERSION_ESQUEMA = 2
 SECTORES = {"computacion", "semiconductores", "software", "internet",
             "telecomunicaciones", "servicios_ti"}
 PRECISIONES = {11: "dia", 10: "mes", 9: "anio", 8: "decada"}
@@ -319,14 +319,14 @@ def derivar_hitos_y_estado(documentos):
         relaciones = documento["relaciones"]
         compra = relaciones.get("adquirida_por")
         if compra and compra.get("anio"):
-            comprador = documentos.get(compra["empresa_id"], {"hitos": []})
+            comprador = documentos.get(compra.get("empresa_id"), {"hitos": []})
             comprador["hitos"].append({
                 "anio": compra["anio"], "tipo": "adquisicion",
                 "contraparte_id": documento["_id"],
                 "descripcion": f"Adquiere {documento['nombre']}"})
         separacion = relaciones.get("escindida_de")
         if separacion and separacion.get("anio"):
-            origen = documentos.get(separacion["empresa_id"], {"hitos": []})
+            origen = documentos.get(separacion.get("empresa_id"), {"hitos": []})
             origen["hitos"].append({
                 "anio": separacion["anio"], "tipo": "otro",
                 "contraparte_id": documento["_id"],
