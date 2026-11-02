@@ -3,6 +3,78 @@ import { obtenerBd } from '../bd.js';
 
 const rutas = Router();
 const patronQid = /^Q[0-9]+$/;
+const SECTORES = [
+  'computacion',
+  'semiconductores',
+  'software',
+  'internet',
+  'telecomunicaciones',
+  'servicios_ti',
+];
+const LIMITE_POR_DEFECTO = 20;
+const LIMITE_MAXIMO = 100;
+const LARGO_MAXIMO_BUSQUEDA = 100;
+
+function leerEntero(valor, porDefecto) {
+  if (valor === undefined) return porDefecto;
+  if (typeof valor !== 'string' || !/^[0-9]+$/.test(valor)) return null;
+  return Number(valor);
+}
+
+rutas.get('/', async (req, res) => {
+  const pagina = leerEntero(req.query.pagina, 1);
+  const limite = leerEntero(req.query.limite, LIMITE_POR_DEFECTO);
+  const { sector, buscar } = req.query;
+
+  if (pagina === null || pagina < 1) {
+    return res.status(400).json({ error: 'pagina debe ser un entero mayor o igual a 1' });
+  }
+  if (limite === null || limite < 1 || limite > LIMITE_MAXIMO) {
+    return res.status(400).json({ error: `limite debe ser un entero entre 1 y ${LIMITE_MAXIMO}` });
+  }
+  if (sector !== undefined && (typeof sector !== 'string' || !SECTORES.includes(sector))) {
+    return res.status(400).json({ error: `sector debe ser uno de: ${SECTORES.join(', ')}` });
+  }
+  if (
+    buscar !== undefined &&
+    (typeof buscar !== 'string' || buscar.trim() === '' || buscar.length > LARGO_MAXIMO_BUSQUEDA)
+  ) {
+    return res.status(400).json({
+      error: `buscar debe ser un texto de 1 a ${LARGO_MAXIMO_BUSQUEDA} caracteres`,
+    });
+  }
+
+  const filtro = {};
+  if (sector) filtro.sectores = sector;
+  if (buscar) filtro.$text = { $search: buscar.trim() };
+
+  const proyeccion = {
+    nombre: 1,
+    sectores: 1,
+    estado: 1,
+    'fundacion.anio': 1,
+    'sede.ciudad': 1,
+    'sede.pais': 1,
+  };
+  const orden = buscar ? { relevancia: { $meta: 'textScore' }, nombre: 1 } : { nombre: 1 };
+
+  const coleccion = obtenerBd().collection('empresas');
+  let cursor = coleccion
+    .find(filtro, { projection: proyeccion })
+    .sort(orden)
+    .skip((pagina - 1) * limite)
+    .limit(limite);
+  if (!buscar) {
+    cursor = cursor.collation({ locale: 'es', strength: 1 });
+  }
+
+  const [datos, total] = await Promise.all([cursor.toArray(), coleccion.countDocuments(filtro)]);
+
+  res.json({
+    datos,
+    paginacion: { pagina, limite, total, paginas: Math.ceil(total / limite) },
+  });
+});
 
 rutas.get('/:qid', async (req, res) => {
   const { qid } = req.params;
