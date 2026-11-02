@@ -62,6 +62,13 @@ Cambio realizado                                  Scripts a ejecutar
 Se agrega, quita o cambia una empresa con         2, 3 y 4
 decision "incluir" en la lista semilla
 
+Se quita una empresa (decision deja de ser        Borrar a mano y luego
+"incluir")                                        2, 3 y 4
+  Antes de correr cualquier script, borrar su documento en mongosh en
+  empresas, raw_wikidata, raw_wikipedia y raw_dbpedia. Ningún script
+  borra documentos, y extraer_complementos.py lee raw_wikidata, no la
+  lista semilla.
+
 Se cambia solo la columna notas de la lista       4
 semilla (relaciones, hitos, fusionar,
 fecha dudosa)

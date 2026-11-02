@@ -386,6 +386,33 @@
     },
     "motivo": "Microchip Technology la compró en 2016; no está en el catálogo"
   },
+  "Q864923": {
+    "campos": {
+      "fundacion": {
+        "anio": 1992,
+        "precision": "anio",
+        "fecha": null
+      },
+      "sede": {
+        "ciudad": "Singapur",
+        "ubicacion": {
+          "type": "Point",
+          "coordinates": [
+            103.833333,
+            1.283333
+          ]
+        }
+      }
+    },
+    "agregar": {
+      "atributos": {
+        "antecesores": [
+          "Telecommunication Authority of Singapore"
+        ]
+      }
+    },
+    "motivo": "Se constituyó como empresa en 1992 al separarse de la autoridad estatal de telecomunicaciones; 1879 es el inicio del servicio telefónico. Ciudad-estado: sede en Singapur"
+  },
   "Q885235": {
     "campos": {
       "fundacion": {
