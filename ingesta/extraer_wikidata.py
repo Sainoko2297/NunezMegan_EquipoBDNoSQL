@@ -42,10 +42,12 @@ PROPIEDADES_REFERENCIA = [
 ]
 HUMANO = "Q5"
 
+INTENTOS = 8
+
 
 def solicitar(parametros):
     parametros = {**parametros, "format": "json", "maxlag": 5}
-    for _ in range(5):
+    for intento in range(1, INTENTOS + 1):
         respuesta = requests.get(API, params=parametros, headers=ENCABEZADOS, timeout=60)
         if respuesta.status_code == 429 or respuesta.status_code >= 500:
             espera = int(respuesta.headers.get("Retry-After", 10))
@@ -56,11 +58,14 @@ def solicitar(parametros):
         datos = respuesta.json()
         if "error" in datos:
             if datos["error"].get("code") == "maxlag":
-                time.sleep(int(respuesta.headers.get("Retry-After", 5)))
+                espera = max(int(respuesta.headers.get("Retry-After", 5)), 5 * intento)
+                print(f"  Wikidata con retraso de {datos['error'].get('lag', '?')} s, "
+                      f"intento {intento} de {INTENTOS}, esperando {espera} s")
+                time.sleep(espera)
                 continue
             raise RuntimeError(datos["error"])
         return datos
-    raise RuntimeError("Wikidata no respondió después de 5 intentos")
+    raise RuntimeError(f"Wikidata no respondió después de {INTENTOS} intentos")
 
 
 def lotes(lista, tamano):
