@@ -15,6 +15,38 @@ const LIMITE_POR_DEFECTO = 20;
 const LIMITE_MAXIMO = 100;
 const LARGO_MAXIMO_BUSQUEDA = 100;
 
+const PROFUNDIDAD_MAXIMA = 10;
+
+rutas.param('qid', (req, res, next, qid) => {
+  if (!patronQid.test(qid)) {
+    return res.status(400).json({
+      error: 'El identificador debe ser Q seguido de números, por ejemplo Q37156',
+    });
+  }
+  next();
+});
+
+function resumirNodos(campo, relacion) {
+  return {
+    $sortArray: {
+      input: {
+        $map: {
+          input: `$${campo}`,
+          as: 'nodo',
+          in: {
+            _id: '$$nodo._id',
+            nombre: '$$nodo.nombre',
+            estado: '$$nodo.estado',
+            nivel: { $add: ['$$nodo.nivel', 1] },
+            vinculo: `$$nodo.relaciones.${relacion}`,
+          },
+        },
+      },
+      sortBy: { nivel: 1, nombre: 1 },
+    },
+  };
+}
+
 function leerEntero(valor, porDefecto) {
   if (valor === undefined) return porDefecto;
   if (typeof valor !== 'string' || !/^[0-9]+$/.test(valor)) return null;
@@ -99,6 +131,46 @@ rutas.get('/:qid', async (req, res) => {
   }
 
   res.json(empresa);
+});
+
+rutas.get('/:qid/genealogia', async (req, res) => {
+  const { qid } = req.params;
+  const recorrido = (como, inicio, desde, hacia) => ({
+    $graphLookup: {
+      from: 'empresas',
+      startWith: inicio,
+      connectFromField: desde,
+      connectToField: hacia,
+      as: como,
+      maxDepth: PROFUNDIDAD_MAXIMA,
+      depthField: 'nivel',
+    },
+  });
+
+  const [resultado] = await obtenerBd()
+    .collection('empresas')
+    .aggregate([
+      { $match: { _id: qid } },
+      recorrido('compradores', '$relaciones.adquirida_por.empresa_id',
+        'relaciones.adquirida_por.empresa_id', '_id'),
+      recorrido('compras', '$_id', '_id', 'relaciones.adquirida_por.empresa_id'),
+      recorrido('escisiones', '$_id', '_id', 'relaciones.escindida_de.empresa_id'),
+      {
+        $project: {
+          nombre: 1,
+          compradores: resumirNodos('compradores', 'adquirida_por'),
+          compras: resumirNodos('compras', 'adquirida_por'),
+          escisiones: resumirNodos('escisiones', 'escindida_de'),
+        },
+      },
+    ])
+    .toArray();
+
+  if (!resultado) {
+    return res.status(404).json({ error: 'Empresa no encontrada' });
+  }
+
+  res.json(resultado);
 });
 
 export default rutas;
