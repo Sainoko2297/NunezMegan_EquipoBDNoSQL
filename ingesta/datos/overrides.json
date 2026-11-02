@@ -1,0 +1,254 @@
+{
+  "Q1000428": {
+    "campos": {
+      "fundacion": {
+        "anio": 1995,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "motivo": "MySQL AB se fundó en 1995, año de la primera versión de MySQL; DBpedia coincide"
+  },
+  "Q1129996": {
+    "campos": {
+      "fundacion": {
+        "anio": 1986,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "motivo": "La empresa de computadoras se fundó en 1986 al comprar la marca; la Packard Bell de 1926 fabricaba radios"
+  },
+  "Q1196269": {
+    "campos": {
+      "fundacion": {
+        "anio": 2003
+      }
+    },
+    "motivo": "2003 correcto; 2002 es el anuncio de la alianza Hitachi-Mitsubishi y 2010 la fusión con NEC Electronics"
+  },
+  "Q1390577": {
+    "campos": {
+      "fundacion": {
+        "anio": 2007
+      }
+    },
+    "motivo": "Twitter, Inc. se constituyó en 2007; el servicio se lanzó en 2006 dentro de Obvious Corp"
+  },
+  "Q173395": {
+    "campos": {
+      "fundacion": {
+        "anio": 1984
+      }
+    },
+    "motivo": "1984 correcto; 2021 no corresponde a una fundación"
+  },
+  "Q208305": {
+    "campos": {
+      "relaciones": {
+        "sucesor": null
+      }
+    },
+    "motivo": "Wikidata registra a Gateway como sucesora; solo compró propiedad intelectual en 1997"
+  },
+  "Q229329": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "empresa_id": "Q80978",
+          "anio": 2010
+        }
+      }
+    },
+    "motivo": "La compró Hewlett-Packard en 2010; Wikidata registra a HPE, su dueña actual tras la escisión de 2015"
+  },
+  "Q28840043": {
+    "campos": {
+      "fundacion": {
+        "anio": 2017
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Toshiba Memory Corporation",
+          "desde": 2017,
+          "hasta": 2019
+        }
+      ]
+    },
+    "motivo": "Fundada en 2017 como Toshiba Memory; 2019 es el cambio de nombre a Kioxia"
+  },
+  "Q30873": {
+    "campos": {
+      "fundacion": {
+        "anio": 1984,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "PC's Limited",
+          "desde": 1984,
+          "hasta": 1987
+        }
+      ]
+    },
+    "motivo": "Fundada en 1984 como PC's Limited; 2016 es la creación de Dell Technologies"
+  },
+  "Q3511885": {
+    "campos": {
+      "fundacion": {
+        "anio": 1994,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "VoiceStream Wireless",
+          "desde": 1994,
+          "hasta": 2002
+        }
+      ]
+    },
+    "motivo": "Nació como VoiceStream Wireless (1994); 2001 es la compra por Deutsche Telekom"
+  },
+  "Q35476": {
+    "campos": {
+      "fundacion": {
+        "anio": 1983,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "SBC Communications",
+          "desde": 1983,
+          "hasta": 2005
+        }
+      ]
+    },
+    "motivo": "Es SBC (1983), renombrada AT&T en 2005 al comprar AT&T Corporation; 1885 es de Q2843047"
+  },
+  "Q37156": {
+    "campos": {
+      "atributos": {
+        "antecesores": [
+          "Computing Tabulating Recording Company"
+        ]
+      }
+    },
+    "motivo": "DEHOMAG fue filial alemana de IBM, no su antecesora"
+  },
+  "Q467752": {
+    "campos": {
+      "fundacion": {
+        "anio": 1983
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Bell Atlantic",
+          "desde": 1983,
+          "hasta": 2000
+        }
+      ]
+    },
+    "motivo": "1983 correcto (Bell Atlantic); 2000 es la fusión con GTE que creó Verizon"
+  },
+  "Q524989": {
+    "campos": {
+      "fundacion": {
+        "anio": 1884
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "National Cash Register Company",
+          "desde": 1884,
+          "hasta": 1974
+        }
+      ]
+    },
+    "motivo": "1884 correcto; 1974 es el cambio de nombre a NCR Corporation"
+  },
+  "Q5281": {
+    "campos": {
+      "fundacion": {
+        "anio": 2000
+      }
+    },
+    "agregar": {
+      "hitos": [
+        {
+          "anio": 1997,
+          "tipo": "lanzamiento",
+          "descripcion": "Lanza el buscador yandex.ru"
+        }
+      ]
+    },
+    "motivo": "La empresa se constituyó en 2000; el buscador se lanzó en 1997"
+  },
+  "Q55606242": {
+    "campos": {
+      "fundacion": {
+        "anio": 2012,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "motivo": "Fundada en 2012 por Zhang Yiming; DBpedia coincide"
+  },
+  "Q885235": {
+    "campos": {
+      "fundacion": {
+        "anio": 1898
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Compagnie Générale d'Électricité",
+          "desde": 1898,
+          "hasta": 1991
+        }
+      ]
+    },
+    "motivo": "1898 es la fundación de CGE, renombrada Alcatel en 1991; 1968 es la filial que originó el nombre"
+  },
+  "Q950419": {
+    "campos": {
+      "fundacion": {
+        "anio": 1999,
+        "precision": "anio",
+        "fecha": null
+      }
+    },
+    "motivo": "Fundada en 1999 por Marcos Galperin; DBpedia coincide"
+  },
+  "Q973054": {
+    "campos": {
+      "fundacion": {
+        "anio": 1997
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "MDM, Inc.",
+          "desde": 1997,
+          "hasta": 1999
+        }
+      ]
+    },
+    "motivo": "Fundada en 1997 como MDM, Inc.; DBpedia registra 1998"
+  }
+}

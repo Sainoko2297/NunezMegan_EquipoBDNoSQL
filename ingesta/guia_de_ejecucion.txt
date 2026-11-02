@@ -1,0 +1,183 @@
+GUÍA DE EJECUCIÓN - WORKER DE INGESTA
+Proyecto Empresas (Base de Datos NoSQL, 6CM68, UPIICSA)
+Carpeta: Proyecto_NoSQL\ingesta
+Última actualización: 1 de noviembre de 2026
+
+======================================================================
+1. ANTES DE EJECUTAR CUALQUIER SCRIPT
+======================================================================
+
+- El servicio de MongoDB debe estar iniciado.
+- El entorno virtual (.venv) debe estar activo; la terminal muestra (.venv).
+- La terminal debe estar ubicada en la carpeta ingesta.
+- El archivo .env debe existir en ingesta, con URI_MONGO y BD_MONGO.
+- Se requiere conexión a internet para los scripts de extracción.
+- El archivo datos\lista_semilla.csv debe existir y estar guardado en
+  formato CSV UTF-8.
+- El archivo .env nunca se sube al repositorio; solo .env.example.
+
+Prueba opcional de conexión: probar_conexion.py.
+
+
+======================================================================
+2. EJECUCIÓN COMPLETA (DESDE CERO)
+======================================================================
+
+Orden obligatorio:
+
+  1. crear_coleccion.py
+     Crea la colección empresas con su validador e índices.
+     Si ya existe, actualiza el validador sin borrar datos.
+
+  2. extraer_wikidata.py
+     Descarga de Wikidata las empresas marcadas como "incluir" en la
+     lista semilla y las guarda en raw_wikidata.
+     Tarda de 2 a 3 minutos.
+
+  3. extraer_complementos.py
+     Descarga resúmenes de Wikipedia (raw_wikipedia) y años de
+     fundación de DBpedia (raw_dbpedia).
+     Tarda de 5 a 6 minutos.
+
+  4. transformar_empresas.py
+     Construye la colección empresas a partir de las tres colecciones
+     raw, las notas de la lista semilla y las correcciones (override).
+     Tarda segundos.
+
+Resultado esperado al terminar:
+  - 160 guardadas de 160, sin líneas RECHAZADA ni OMITIDA.
+  - Solo alertas estado_corregido (son informativas).
+
+Los pasos 2 y 3 son independientes de los datos de empresas: nunca
+borran correcciones. Las correcciones viven en override y sobreviven a
+cualquier recarga.
+
+
+======================================================================
+3. QUÉ VOLVER A EJECUTAR SEGÚN EL CAMBIO
+======================================================================
+
+Cambio realizado                                  Scripts a ejecutar
+-----------------------------------------------   --------------------
+Se agrega, quita o cambia una empresa con         2, 3 y 4
+decision "incluir" en la lista semilla
+
+Se cambia solo la columna notas de la lista       4
+semilla (relaciones, hitos, fusionar,
+fecha dudosa)
+
+Se cambia sector_cuota en la lista semilla        4
+
+Se agrega o modifica un override                  4
+
+Se cambia el validador (sectores, tipos de        1 y después 4
+hito, reglas de alerta, campos)
+
+Se quieren datos actualizados de las fuentes      2, 3 y 4
+
+Se cambia algo en transformar_empresas.py         4
+
+
+======================================================================
+4. FASE DE SELECCIÓN DEL CATÁLOGO (SOLO SI SE REHACE)
+======================================================================
+
+No es parte de la ejecución normal. Solo aplica si se decide volver a
+elegir las empresas del catálogo.
+
+  a. buscar_candidatas.py   -> genera datos\candidatas.csv
+  b. puntuar_candidatas.py  -> genera datos\candidatas_puntuadas.csv
+  c. Revisión manual con las reglas R1 a R7 de la guía de curación.
+  d. Guardar el resultado como datos\lista_semilla.csv.
+
+Precauciones:
+  - puntuar_candidatas.py sobrescribe candidatas_puntuadas.csv. Nunca
+    se debe guardar la revisión manual encima de ese archivo.
+  - En la lista semilla nunca se borran filas; solo se editan
+    sector_cuota, decision y notas.
+  - Al terminar, cada sector debe tener exactamente su cuota de filas
+    "incluir": software 35, computacion 30, internet 30,
+    telecomunicaciones 30, semiconductores 25, servicios_ti 10.
+  - puntuar_candidatas.py tiene un error conocido: asigna el sector por
+    orden alfabético. Se corrige en la revisión manual.
+
+
+======================================================================
+5. EXCEPCIONES Y QUÉ HACER
+======================================================================
+
+Mensajes de extraer_wikidata.py
+  - AVISO "son personas": el QID de la lista apunta a una persona.
+    Corregir el qid en la lista semilla.
+  - AVISO "no existen en Wikidata": QID mal escrito o eliminado.
+    Corregir el qid en la lista semilla.
+  - AVISO "ahora es Qxxx": Wikidata fusionó la entidad. Actualizar el
+    qid en la lista semilla.
+  - AVISO "monedas sin código ISO": los ingresos en esa moneda se
+    descartarán. Solo se corrigen con override si son importantes.
+
+Mensajes de extraer_complementos.py
+  - "Servidor ocupado (429)": límite de velocidad de Wikipedia o
+    DBpedia. Es normal; el script espera y continúa solo.
+  - AVISO "el artículo corresponde a Qxxx": el artículo de Wikipedia no
+    es de esa empresa. El resumen se descarta; no requiere acción salvo
+    que la empresa quede sin resumen.
+  - AVISO "sin artículo en inglés": esa empresa no tendrá contraste con
+    DBpedia. No requiere acción.
+
+Mensajes de transformar_empresas.py
+  - OMITIDA: la empresa no tiene fecha de fundación en Wikidata y el
+    validador la exige. Hoy un override no puede resolverlo, porque la
+    ficha no llega a crearse; requiere ajustar el script. Consultar
+    antes de continuar.
+  - RECHAZADA POR EL VALIDADOR: el documento no cumple el esquema. El
+    detalle indica el campo. Revisar el override o la nota de esa
+    empresa; si todo es correcto, el error está en el script.
+  - AVISO "nota sin destino": la nota apunta a un QID que no está en el
+    catálogo. Corregir el QID de la nota.
+  - AVISO "override ... no se puede corregir": se intentó modificar
+    _id, meta u override. Se ignora; quitar ese campo del override.
+
+Alertas en meta.alertas
+  - estado_corregido: informativa. La disolución se interpretó como
+    adquisición. No requiere acción.
+  - fundacion_posterior_disolucion, fundacion_posterior_primer_dato,
+    fundaciones_dispersas, discrepancia_dbpedia, fecha_dudosa:
+    requieren revisión. Se resuelven con un override que corrija o
+    confirme la fundación; al aplicarlo, la alerta desaparece.
+
+Reglas de los override
+  - Todo override debe tener motivo; sin él, MongoDB lo rechaza.
+  - Se aplican hasta la siguiente ejecución de transformar_empresas.py,
+    no al guardarlos.
+  - Guardar un override nuevo en una empresa reemplaza el anterior
+    completo. Si la empresa ya tenía uno, hay que incluir lo anterior.
+  - Para sumar hitos o nombres históricos se usa "agregar"; usar
+    "campos" con esas listas borra los que generó el worker.
+
+Reglas de las notas de la lista semilla
+  - Solo se reconocen los formatos exactos de la guía de curación.
+    Una nota con otro formato se ignora sin aviso.
+  - Varias notas en la misma celda se separan con " | ".
+  - Las notas tienen prioridad sobre Wikidata; el override tiene
+    prioridad sobre ambas.
+
+Cambios que deben hacerse en dos archivos a la vez
+  - Agregar un sector: crear_coleccion.py y transformar_empresas.py.
+  - Agregar un tipo de hito: crear_coleccion.py y
+    transformar_empresas.py.
+  - Agregar una regla de alerta: crear_coleccion.py (lista de reglas)
+    y transformar_empresas.py (cálculo de la alerta).
+  Después, ejecutar 1 y 4.
+
+
+======================================================================
+6. LO QUE NO SE EDITA A MANO
+======================================================================
+
+  - Las colecciones raw_wikidata, raw_wikipedia y raw_dbpedia.
+  - Los campos de empresas fuera de override; se regeneran en cada
+    ejecución y cualquier cambio manual se pierde.
+  - candidatas.csv y candidatas_puntuadas.csv; se regeneran.
+  - Las columnas informativas de la lista semilla (puntuacion, enlaces,
+    pais, tipos, etc.); el worker no las lee.
