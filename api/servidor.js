@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import cors from 'cors';
 import { conectar, desconectar, obtenerBd } from './bd.js';
 import rutasEmpresas from './rutas/empresas.js';
+import rutasEcosistema from './rutas/ecosistema.js';
 
 const variablesRequeridas = ['URI_MONGODB', 'BASE_DATOS', 'PUERTO', 'ORIGEN_INTERFAZ'];
 const faltantes = variablesRequeridas.filter((nombre) => !process.env[nombre]);
@@ -21,6 +22,7 @@ app.get('/api/salud', async (req, res) => {
 });
 
 app.use('/api/empresas', rutasEmpresas);
+app.use('/api/ecosistema', rutasEcosistema);
 
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
