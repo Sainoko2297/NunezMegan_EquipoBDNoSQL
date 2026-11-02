@@ -23,12 +23,15 @@ QID = {"bsonType": "string", "pattern": "^Q[0-9]+$"}
 
 
 def referencia():
-    """Relación con otra empresa: {empresa_id, anio} o null."""
-    return {
-        "bsonType": ["object", "null"],
-        "required": ["empresa_id"],
-        "properties": {"empresa_id": QID, "anio": ENTERO},
-    }
+    """Relación con otra empresa o null. {empresa_id, anio} si la otra empresa está
+    en el catálogo; {nombre, anio} si no lo está. Nunca ambas."""
+    objeto = {"bsonType": "object", "additionalProperties": False,
+              "properties": {"empresa_id": QID, "nombre": TEXTO, "anio": ENTERO}}
+    return {"oneOf": [
+        {"bsonType": "null"},
+        {**objeto, "required": ["empresa_id"]},
+        {**objeto, "required": ["nombre"]},
+    ]}
 
 
 def fecha_historica(permite_nulo):
