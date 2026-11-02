@@ -5,9 +5,14 @@
         "anio": 1995,
         "precision": "anio",
         "fecha": null
+      },
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2008
+        }
       }
     },
-    "motivo": "MySQL AB se fundó en 1995, año de la primera versión de MySQL; DBpedia coincide"
+    "motivo": "MySQL AB se fundó en 1995, año de la primera versión de MySQL; DBpedia coincide. Sun Microsystems la compró en 2008"
   },
   "Q1029222": {
     "campos": {
@@ -61,6 +66,16 @@
     },
     "motivo": "2003 correcto; 2002 es el anuncio de la alianza Hitachi-Mitsubishi y 2010 la fusión con NEC Electronics"
   },
+  "Q1359568": {
+    "campos": {
+      "estado": "activa",
+      "relaciones": {
+        "adquirida_por": null
+      },
+      "nombre": "Alibaba Group"
+    },
+    "motivo": "SoftBank es accionista minoritario, no dueño; la empresa sigue independiente. El QID corresponde al grupo, no al sitio alibaba.com"
+  },
   "Q1390577": {
     "campos": {
       "fundacion": {
@@ -75,6 +90,54 @@
       }
     },
     "motivo": "Twitter, Inc. se constituyó en 2007; el servicio se lanzó en 2006 dentro de Obvious Corp. Se fusionó en 2023 con X Corp."
+  },
+  "Q1420164": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2012
+        }
+      }
+    },
+    "motivo": "América Móvil tomó el control en 2012"
+  },
+  "Q144060": {
+    "campos": {
+      "fundacion": {
+        "anio": 1987,
+        "precision": "anio",
+        "fecha": null,
+        "lugar": null
+      },
+      "fundadores": [
+        {
+          "nombre": "Burton Smith"
+        },
+        {
+          "nombre": "James Rottsolk"
+        }
+      ],
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2019
+        }
+      }
+    },
+    "agregar": {
+      "nombres_historicos": [
+        {
+          "nombre": "Tera Computer Company",
+          "desde": 1987,
+          "hasta": 2000
+        }
+      ],
+      "atributos": {
+        "antecesores": [
+          "Cray Research"
+        ]
+      }
+    },
+    "motivo": "La entidad es Tera Computer (1987), que compró Cray Research a SGI en 2000 y adoptó el nombre Cray Inc.; Cray Research (1972) es antecesora. HPE la compró en 2019"
   },
   "Q160229": {
     "campos": {
@@ -179,7 +242,10 @@
     "campos": {
       "nombre": "Motorola Solutions",
       "estado": "activa",
-      "disolucion": null
+      "disolucion": null,
+      "relaciones": {
+        "sucesor": null
+      }
     },
     "agregar": {
       "nombres_historicos": [
@@ -195,7 +261,21 @@
         }
       ]
     },
-    "motivo": "La misma entidad siguió como Motorola Solutions tras separar Motorola Mobility en 2011"
+    "motivo": "La misma entidad siguió como Motorola Solutions tras separar Motorola Mobility en 2011; Motorola Mobility es escisión, no sucesora"
+  },
+  "Q267313": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2011
+        },
+        "escindida_de": {
+          "empresa_id": "Q248",
+          "anio": 2017
+        }
+      }
+    },
+    "motivo": "Intel la compró en 2011 y la separó en 2017 como empresa independiente con TPG"
   },
   "Q28840043": {
     "campos": {
@@ -250,6 +330,11 @@
         "anio": 1994,
         "precision": "anio",
         "fecha": null
+      },
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 2001
+        }
       }
     },
     "agregar": {
@@ -261,7 +346,7 @@
         }
       ]
     },
-    "motivo": "Nació como VoiceStream Wireless (1994); 2001 es la compra por Deutsche Telekom"
+    "motivo": "Nació como VoiceStream Wireless (1994); Deutsche Telekom la compró en 2001"
   },
   "Q35476": {
     "campos": {
@@ -373,7 +458,22 @@
         }
       }
     },
-    "motivo": "Rackable Systems compró sus activos en 2009 y adoptó el nombre SGI"
+    "motivo": "Rackable Systems compró sus activos en 2009 y adoptó el nombre SGI. Hitos de Cray Research, que no tiene documento propio",
+    "agregar": {
+      "hitos": [
+        {
+          "anio": 1996,
+          "tipo": "adquisicion",
+          "descripcion": "Adquiere Cray Research"
+        },
+        {
+          "anio": 2000,
+          "tipo": "venta_division",
+          "contraparte_id": "Q144060",
+          "descripcion": "Vende Cray Research a Tera Computer, hoy Cray Inc."
+        }
+      ]
+    }
   },
   "Q757489": {
     "campos": {
@@ -436,6 +536,25 @@
       ]
     },
     "motivo": "1898 es la fundación de CGE, renombrada Alcatel en 1991; 1968 es la filial que originó el nombre. Se fusionó con Lucent en 2006 para formar Alcatel-Lucent"
+  },
+  "Q909169": {
+    "campos": {
+      "relaciones": {
+        "adquirida_por": {
+          "anio": 1995
+        }
+      }
+    },
+    "motivo": "IBM la compró en 1995; Wikidata no registra el año"
+  },
+  "Q9396": {
+    "campos": {
+      "estado": "activa",
+      "relaciones": {
+        "adquirida_por": null
+      }
+    },
+    "motivo": "SoftBank es accionista minoritario, no dueño; la empresa sigue independiente"
   },
   "Q950419": {
     "campos": {
