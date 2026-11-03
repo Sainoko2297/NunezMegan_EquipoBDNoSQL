@@ -188,3 +188,20 @@ Cambios que deben hacerse en dos archivos a la vez
   - candidatas.csv y candidatas_puntuadas.csv; se regeneran.
   - Las columnas informativas de la lista semilla (puntuacion, enlaces,
     pais, tipos, etc.); el worker no las lee.
+
+======================================================================
+4. EJECUTAR CONTRA MONGODB ATLAS
+======================================================================
+
+- En ingesta\.env, URI_MONGO debe usar el usuario de escritura del
+  worker (readWrite y dbAdmin sobre la base empresas). Nunca el de la
+  API, que es de solo lectura.
+- La IP del equipo debe estar en Network Access > IP Access List de
+  Atlas. Si la conexión se agota, es lo primero a revisar.
+- En una base vacía, seguir el orden de la sección 2 y después:
+  transformar_empresas.py, respaldar_overrides.py restaurar y
+  transformar_empresas.py otra vez.
+- Las contraseñas solo van en los archivos .env. Nunca en el
+  repositorio, en chats ni en el código de la interfaz.
+- Atlas gratuito: 512 MB, versión 8.0. Probar en Atlas cualquier
+  consulta nueva, no solo en la base local.
